@@ -2,13 +2,12 @@
   "name": "t",
   "bin": "bin/t",
   "version": "1.0.0",
-  "description": "",
+  "description": "Tiny scaffolding engine",
   "main": "index.js",
   "scripts": {
-    "test": "t backbone",
+    "test": "t backbone -o ./test",
     "watch": "watchd *.js */**.js -c 'npm test'"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "chalk": "^1.1.3",
@@ -22,5 +21,6 @@
   },
   "devDependencies": {
     "watchd": "github:mklabs/watchd"
-  }
+  },
+  "keywords": ["scaffold", "template", "skeleton", "generator"]
 }

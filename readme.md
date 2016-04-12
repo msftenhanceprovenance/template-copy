@@ -1,6 +1,6 @@
 # t
 
-**Tiny scafolding engine**
+**Tiny scaffolding engine**
 
 ## Install
 
@@ -53,7 +53,7 @@ Using the [./examples](./examples) directory in this repo:
 Any valid Handlebars template can be used as a source for a new command,
 without the need to interact with the API directly.
 
-Instead, the scafolding system relies on a few conventions, and a minimalist
+Instead, the scaffolding system relies on a few conventions, and a minimalist
 DSL available in templates (usually used within comments) allowing the definition of:
 
 - output - Define a default output location
