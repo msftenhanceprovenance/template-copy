@@ -1,0 +1,17 @@
+{
+  "name": "t",
+  "bin": "bin/t",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "t backbone",
+    "watch": "watchd *.js */**.js -c 'npm test'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "handlebars": "^4.0.5"
+  }
+}
