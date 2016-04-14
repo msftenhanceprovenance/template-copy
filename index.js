@@ -38,15 +38,26 @@ var loadDirs = process.env.T_LOAD_DIRS ? process.env.T_LOAD_DIRS.split(' ') : [
 ];
 
 var cmds = [];
+
+var repl = vorpal
+  .command('repl', 'Enter REPL mode')
+  .action(vorpal.show.bind(vorpal));
+
+repl.name = 'repl';
+repl.action = vorpal.show.bind(vorpal);
+cmds.push(repl);
+
 lookup(loadDirs).forEach(function(dir) {
-  cmds = dir.files.map(register.bind(null, vorpal, dir, opts));
+  cmds = cmds.concat(dir.files.map(register.bind(null, vorpal, dir, opts)));
 });
 
-if (opts.help || cmd === 'help') {
+
+if (opts.help || cmd === 'help' || !args.length) {
   return console.log(help(vorpal, args.slice(1), loadDirs));
 }
 
 var registered = cmds.find(function(item) {
+  if (!item) return;
   return item.name === cmd;
 });
 
@@ -63,5 +74,4 @@ if (registered) {
   });
 }
 
-if (!args.length) vorpal.show();
-else logerr('%s:bold generator not found', cmd);
+logerr('%s:bold generator not found', cmd);
