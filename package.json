@@ -14,13 +14,19 @@
     "debug": "^2.2.0",
     "figlet": "^1.1.1",
     "glob": "^7.0.3",
-    "handlebars": "^4.0.5",
+    "lodash": "^4.11.0",
     "log-symbols": "^1.0.2",
     "mz": "^2.4.0",
+    "parse-help": "^0.1.0",
     "vorpal": "^1.10.10"
   },
   "devDependencies": {
     "watchd": "github:mklabs/watchd"
   },
-  "keywords": ["scaffold", "template", "skeleton", "generator"]
+  "keywords": [
+    "scaffold",
+    "template",
+    "skeleton",
+    "generator"
+  ]
 }
