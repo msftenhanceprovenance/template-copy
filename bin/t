@@ -1,3 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env babel-node
 
+// process.env.DEBUG = process.env.DEBUG || 't t:*';
 require('..');

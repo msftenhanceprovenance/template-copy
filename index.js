@@ -1,5 +1,3 @@
-process.env.DEBUG = process.env.DEBUG ? process.env.DEBUG : 't*';
-
 var start = Date.now();
 var logSymbols = require('log-symbols');
 var chalk = require('chalk');
@@ -48,12 +46,17 @@ repl.action = vorpal.show.bind(vorpal);
 cmds.push(repl);
 
 lookup(loadDirs).forEach(function(dir) {
-  cmds = cmds.concat(dir.files.map(register.bind(null, vorpal, dir, opts)));
+  cmds = cmds.concat(dir.files.map(register.bind(null, vorpal, dir.dir, opts)));
+
+  Object.keys(dir.appdirs).forEach(function(appdir) {
+    cmds.push(register.directory(vorpal, dir.dir, opts, appdir));
+  });
 });
 
 
 if (opts.help || cmd === 'help' || !args.length) {
-  return console.log(help(vorpal, args.slice(1), loadDirs));
+  console.log(help(vorpal, args.slice(1), loadDirs));
+  process.exit(0);
 }
 
 var registered = cmds.find(function(item) {
@@ -61,17 +64,18 @@ var registered = cmds.find(function(item) {
   return item.name === cmd;
 });
 
-if (registered) {
-  welcome(cmd);
-
-  return registered.action({}, function(err, opts) {
-    if (err) return logerr(err.stack);
-
-    var time = Date.now() - start;
-    var msg = '(%s generator sucesfully run in):green %ds:bold';
-    var logger = new Logger();
-    logger.ok(msg, cmd, time / 1000);
-  });
+if (!registered) {
+  logerr('%s:bold generator not found', cmd);
+  process.exit(1);
 }
 
-logerr('%s:bold generator not found', cmd);
+welcome(cmd);
+
+registered.action({}, function(err, opts) {
+  if (err) return logerr(err.stack);
+
+  var time = Date.now() - start;
+  var msg = '(%s generator sucesfully run in):green %ds:bold';
+  var logger = new Logger();
+  logger.ok(msg, cmd, time / 1000);
+});
