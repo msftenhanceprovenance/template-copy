@@ -13,8 +13,6 @@
 ```js
 const t = require('template-copy');
 
-let files = ['test/**.json', 'path/to/destination/'];
-
 t('index.html templates/ ~/.config/templates/ava/ test/');
   .catch((err) => {
     console.log('ERR', err);
@@ -73,3 +71,7 @@ If not installed, prompts are not generated.
 ## JSON
 
 JSON files are merged together with destination, if it already exists.
+
+## Related
+
+- [hcp](https://github.com/mklabs/handlebars-copy) - CLI command power by template-copy
