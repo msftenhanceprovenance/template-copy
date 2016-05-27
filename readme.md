@@ -2,15 +2,29 @@
 
 **Tiny scaffolding engine**
 
+> Like cp, but with Lodash templates
+
 ## Install
 
-    npm i template-copy -g
+    npm i template-copy
 
 ## Usage
 
 ```js
 const t = require('template-copy');
+
+let files = ['test/**.json', 'path/to/destination/'];
+
+t('index.html templates/ ~/.config/templates/ava/ test/');
+  .catch((err) => {
+    console.log('ERR', err);
+  })
+  .then(() => {
+    console.log('done');
+  });
 ```
+
+## Description
 
 File copy is done using Streams, with `lodash.template` parsing files if they
 have template placeholders `{{ ... }}`.
