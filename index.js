@@ -5,8 +5,14 @@ t.Template = Template;
 
 function t (argv, opts) {
   argv = Array.isArray(argv) ? argv
-    : typeof argv === 'string' ? argv.split()
+    : typeof argv === 'string' ? argv.split(' ')
     : process.argv.slice(2);
 
-  return new Template(argv, opts);
+  try {
+    let t = new Template(argv, opts);
+    return t.init(argv);
+  } catch (e) {
+    console.error('ERR: Something wrong happend while creating Template instance', e);
+    throw e;
+  }
 };
