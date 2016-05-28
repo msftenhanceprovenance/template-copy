@@ -1,6 +1,6 @@
 {
   "name": "template-copy",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Tiny scaffolding engine",
   "main": "index.js",
   "scripts": {
